@@ -49,23 +49,27 @@ st.dataframe(data.tail(20))
 # Kópia pôvodného dátového rámca
 datama50 = data.copy()
 
-# Skontroluj, či stĺpec 'Close' existuje
+# Skontroluj, či stĺpec 'Close' existuje v dátach
 if 'Close' in datama50.columns:
-    # Skontroluj, či má stĺpec 'Close' aspoň jednu nenulovú hodnotu
-    if datama50['Close'].notnull().any():
+    # Skontroluj, či stĺpec 'Close' obsahuje aspoň jednu platnú (ne-null) hodnotu
+    close_has_values = datama50['Close'].notnull().any()
+    
+    if close_has_values:
         # Vypočítaj 50-dňový kĺzavý priemer
         datama50['50ma'] = datama50['Close'].rolling(50).mean()
         
-        # Skontroluj, či sa '50ma' úspešne vytvoril a obsahuje platné hodnoty
-        if '50ma' in datama50.columns and datama50['50ma'].notnull().any():
-            # Vykresli graf, ak '50ma' a 'Close' majú dáta
+        # Skontroluj, či '50ma' obsahuje aspoň jednu platnú hodnotu
+        ma50_has_values = datama50['50ma'].notnull().any()
+        
+        if ma50_has_values:
+            # Vykresli graf, ak obe podmienky sú splnené
             st.line_chart(datama50[['50ma', 'Close']])
         else:
-            st.warning("Stĺpec '50ma' nemá dostatok dát na výpočet alebo sa nevytvoril správne.")
+            st.warning("Stĺpec '50ma' nemá dostatok platných dát na vykreslenie.")
     else:
-        st.warning("Stĺpec 'Close' neobsahuje žiadne platné dáta.")
+        st.warning("Stĺpec 'Close' nemá žiadne platné hodnoty na výpočet.")
 else:
-    st.warning("V dátach chýba stĺpec 'Close'.")
+    st.warning("Stĺpec 'Close' neexistuje v dátach.")
 
 
 
