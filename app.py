@@ -49,19 +49,23 @@ st.dataframe(data.tail(20))
 # Kópia pôvodného dátového rámca
 datama50 = data.copy()
 
+# Kópia pôvodného dátového rámca
+datama50 = data.copy()
+
 # Skontroluj, či stĺpec 'Close' existuje a má platné hodnoty
-if 'Close' in datama50.columns and not datama50['Close'].isnull().all():
+if 'Close' in datama50.columns and datama50['Close'].notnull().any():
     # Vypočítaj 50-dňový kĺzavý priemer
     datama50['50ma'] = datama50['Close'].rolling(50).mean()
     
-    # Skontroluj, či sa '50ma' úspešne vytvoril
-    if '50ma' in datama50.columns and not datama50['50ma'].isnull().all():
+    # Skontroluj, či sa '50ma' úspešne vytvoril a obsahuje platné hodnoty
+    if '50ma' in datama50.columns and datama50['50ma'].notnull().any():
         # Vykresli graf, ak '50ma' a 'Close' majú dáta
         st.line_chart(datama50[['50ma', 'Close']])
     else:
         st.warning("Stĺpec '50ma' nemá dostatok dát na výpočet alebo sa nevytvoril správne.")
 else:
     st.warning("Stĺpec 'Close' neobsahuje žiadne platné dáta.")
+
 
 
 st.header('Jednoduchý kĺzavý priemer za 50 dní')
