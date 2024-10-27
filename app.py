@@ -52,16 +52,12 @@ datama50 = data.copy()
 # Skontroluj, či stĺpec 'Close' existuje v dátach
 if 'Close' in datama50.columns:
     # Skontroluj, či stĺpec 'Close' obsahuje aspoň jednu nenull hodnotu
-    close_has_values = bool(datama50['Close'].notnull().any())  # Explicitná konverzia na True/False
-
-    if close_has_values:
+    if datama50['Close'].notnull().any():  # Použitie .any() pre jednoduché True/False vyhodnotenie
         # Vypočítaj 50-dňový kĺzavý priemer
         datama50['50ma'] = datama50['Close'].rolling(50).mean()
 
         # Skontroluj, či '50ma' obsahuje aspoň jednu platnú hodnotu
-        ma50_has_values = bool(datama50['50ma'].notnull().any())  # Opäť explicitná konverzia na True/False
-
-        if ma50_has_values:
+        if datama50['50ma'].notnull().any():  # Opäť použitie .any() pre jednoduché vyhodnotenie
             # Vykresli graf, ak obe podmienky sú splnené
             st.line_chart(datama50[['50ma', 'Close']])
         else:
@@ -70,7 +66,6 @@ if 'Close' in datama50.columns:
         st.warning("Stĺpec 'Close' nemá žiadne platné hodnoty na výpočet.")
 else:
     st.warning("Stĺpec 'Close' neexistuje v dátach.")
-
 
 
 
