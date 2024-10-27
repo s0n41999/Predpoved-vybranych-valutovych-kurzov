@@ -46,6 +46,7 @@ st.line_chart(data.Close)
 st.header('Nedávne Dáta')
 st.dataframe(data.tail(20))
 
+datama50 = data.copy()  # Uistíme sa, že datama50 je kópia data a nie prázdna hodnota
 if 'Close' in datama50.columns:
     datama50['50ma'] = datama50['Close'].rolling(50).mean()
     if '50ma' in datama50.columns:
@@ -54,6 +55,7 @@ if 'Close' in datama50.columns:
         st.warning("Stĺpec '50ma' sa nepodarilo vytvoriť.")
 else:
     st.warning("V dátach chýba stĺpec 'Close'.")
+
 
 st.header('Jednoduchý kĺzavý priemer za 50 dní')
 datama50=data 
