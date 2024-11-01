@@ -102,7 +102,9 @@ def vykonat_model(model, pocet_dni):
     y = y[:-pocet_dni]
 
     #rozdelenie dát
-    x_trenovanie, x_testovanie, y_trenovanie, y_testovanie = train_test_split(x, y, test_size=.2, random_state=7)
+    train_size = int(len(x) * 0.8)
+    x_trenovanie, x_testovanie = x[:train_size], x[train_size:]
+    y_trenovanie, y_testovanie = y[:train_size], y[train_size:]
     # trénovanie modelu
     model.fit(x_trenovanie, y_trenovanie)
     predikcia = model.predict(x_testovanie)
