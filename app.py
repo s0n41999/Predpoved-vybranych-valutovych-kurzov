@@ -32,7 +32,7 @@ def stiahnut_data(user_input, start_date, end_date):
         df.columns = ['_'.join(col).strip() for col in df.columns.values]
     return df
 
-moznost = st.selectbox('Zadajte menový tiker', ['EURUSD=X','EURCHF=X', 'EURAUD=X','EURNZD=X', 'EURCAD=X', 'EURCZK=X', 'EUR=X'])
+moznost = st.selectbox('Zadajte menový tiker', ['EURUSD=X','EURCHF=X', 'EURAUD=X','EURNZD=X', 'EURCAD=X', 'EURCZK=X', 'EUR=X', 'CHFEUR=X', 'AUDEUR=X', 'NZDEUR=X', 'CADEUR=X', 'CZKEUR=X'])
 moznost = moznost.upper()
 dnes = datetime.date.today()
 start = dnes - datetime.timedelta(days=3650)
