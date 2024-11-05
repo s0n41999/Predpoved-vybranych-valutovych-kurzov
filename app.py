@@ -79,14 +79,14 @@ def dataframe():
 
 def predikcia():
     
-    model_name = st.selectbox('Vyberte model', ['Lineárna Regresia', 'Regresor náhodného lesa', 'Regresor K najbližších susedov'])
+    vyber_model = st.selectbox('Vyberte model', ['Lineárna Regresia', 'Regresor náhodného lesa', 'Regresor K najbližších susedov'])
     pocet_dni = int(st.number_input('Koľko dní chcete predpovedať?', value=5))
 
-    if model_name == 'Lineárna Regresia':
+    if vyber_model == 'Lineárna Regresia':
         model = LinearRegression()
-    elif model_name == 'Regresor náhodného lesa':
+    elif vyber_model == 'Regresor náhodného lesa':
         model = RandomForestRegressor()
-    elif model_name == 'Regresor K najbližších susedov':
+    elif vyber_model == 'Regresor K najbližších susedov':
         model = KNeighborsRegressor()
 
     
