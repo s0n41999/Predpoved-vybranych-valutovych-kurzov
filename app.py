@@ -5,7 +5,6 @@ import yfinance as yf
 import datetime
 from datetime import date
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
@@ -101,7 +100,6 @@ def predikcia():
         y = y[:-pocet_dni]
 
         
-        x_trenovanie, x_testovanie, y_trenovanie, y_testovanie = train_test_split(x, y, test_size=.2, random_state=7)
         train_size = int(len(x) * 0.8)
         x_trenovanie, x_testovanie = x[:train_size], x[train_size:]
         y_trenovanie, y_testovanie = y[:train_size], y[train_size:]
