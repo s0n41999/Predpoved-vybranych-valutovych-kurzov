@@ -114,7 +114,6 @@ def predikcia():
         predikcia_forecast = model.predict(x_predikcia)
         den = 1
         predikovane_data = []
-        col1, col2 = st.columns(2)
         
         den = 1
         predikovane_data = []
