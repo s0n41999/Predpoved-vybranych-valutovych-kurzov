@@ -33,7 +33,8 @@ def stiahnut_data(user_input, start_date, end_date):
 
 moznost = st.selectbox('Zadajte menový tiker', ['EURUSD=X','EURCHF=X', 'EURAUD=X','EURNZD=X', 'EURCAD=X', 'EURSEK=X', 'EURCZK=X'])
 moznost = moznost.upper()
-dnes = datetime.date.today()
+#dnes = datetime.date.today()
+dnes = datetime.date(2024, 10, 1)
 start = dnes - datetime.timedelta(days=3650)
 start_date = start
 end_date = dnes
